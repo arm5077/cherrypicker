@@ -9,6 +9,14 @@ app.listen(port, function(){
 	console.log("We're live at port " + port + ".");
 });
 
+// Set up static page (main page)
+app.use("/", express.static(__dirname + "/public/"));
+
+// Set up static page (assets page)
+app.use("/assets", express.static(__dirname + "/public/assets/"));
+
+
+
 // Endpoint to deliver information about a tree
 app.get("/trees/:id", function(request, response){
 	
