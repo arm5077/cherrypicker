@@ -103,6 +103,13 @@ tree {
 /* entire container, keeps perspective */
 .flip-container {
 	perspective: 1000;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	cursor:pointer;
 }
 	/* flip the pane when hovered */
  	.flip-container.flip .flipper {
