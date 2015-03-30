@@ -103,6 +103,7 @@ tree {
 /* entire container, keeps perspective */
 .flip-container {
 	perspective: 1000;
+	-webkit-perspective: 1000;
 	-webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
