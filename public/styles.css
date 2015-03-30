@@ -105,7 +105,7 @@ tree {
 	perspective: 1000;
 }
 	/* flip the pane when hovered */
-	.flip-container:hover .flipper, .flip-container.hover .flipper {
+ 	.flip-container.flip .flipper {
 		transform: rotateY(180deg);
 	}
 	

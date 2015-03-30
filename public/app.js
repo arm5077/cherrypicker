@@ -1,7 +1,7 @@
-app = angular.module("treeApp", ['ngAnimate']);
+app = angular.module("treeApp", ['ngAnimate', 'ngTouch']);
 app.controller("treeController", ["$scope", "$http", function($scope, $http){
 
-
+	$scope.flipped = false;
 
 	
 }]);
