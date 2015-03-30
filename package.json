@@ -1,0 +1,23 @@
+{
+  "name": "cherrypicker",
+  "version": "1.0.0",
+  "description": "Directs people to the nearest Washington, D.C. cherry tree.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arm5077/cherrypicked.git"
+  },
+  "author": "Andrew McGill",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arm5077/cherrypicked/issues"
+  },
+  "homepage": "https://github.com/arm5077/cherrypicked",
+  "dependencies": {
+    "express": "^4.12.3",
+    "pg": "^4.3.0"
+  }
+}
