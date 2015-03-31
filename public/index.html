@@ -27,12 +27,18 @@
 
 	<div class="section" id="intro">
 			<h1 id="title" on-top margin-bottom="20">Cherrypicker</h2>
-			<div id="centered" class = "flip-container" style="width:300px; height:300px" center-x center-y ng-class="{flip: flipped}" ng-click="console.log('yo'); flipped=!flipped">
+			<div id="centered" class = "flip-container" style="width:300px; height:300px" center-x center-y ng-class="{flip: flipped}" ng-click="getTree()">
 				<div class = "flipper" >
 					<div class = "front roundButton" center-x center-y>
-						<div class = "text" center-x center-y>
+						
+						<div class = "text" center-x center-y ng-hide="loaded">
 							<div class="tree">A</div>
 						</div>
+						
+						<div class = "text" center-x center-y ng-show="loaded">
+							{{result.distance;}}
+						</div>
+						
 					</div>
 				
 					<div class = "back roundButton" center-x center-y>

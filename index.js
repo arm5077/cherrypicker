@@ -40,6 +40,7 @@ app.get("/nearest/:lng/:lat", function(request, response){
 	console.log(request.params.lng);
 	
 	pg.connect("postgres://amcgill@localhost/trees", function(err, client, done){
+		console.log("connected to database");
 		if( err ) throw err;	
 		client.query("SELECT *, ST_DISTANCE(geom, ST_SetSRID(ST_MakePoint($1, $2), 4326)) as distance \
 			FROM trees.trees \
@@ -48,6 +49,8 @@ app.get("/nearest/:lng/:lat", function(request, response){
 		[request.params.lng, request.params.lat], function(err, result){
 			if(err) throw err;
 			response.status(200).json(result.rows);
+			done();
+			client.end();
 		});
 	});
 	

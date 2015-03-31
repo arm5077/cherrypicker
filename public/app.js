@@ -1,11 +1,59 @@
 app = angular.module("treeApp", ['ngAnimate', 'ngTouch']);
+
 app.controller("treeController", ["$scope", "$http", function($scope, $http){
 
 	$scope.flipped = false;
 	$scope.console = console;
 
+	$scope.getTree = function(){
+		console.log("asking for tree");
+		$scope.flipped = true;
+		if( navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(function(position){
+				console.log(position);
+				$http.get("/nearest/" + position.coords.longitude + "/" + position.coords.latitude)
+					.success(function(data, status, headers, config){
+						console.log("got response");
+						$scope.loaded = true;
+						$scope.result = {};
+						$scope.result.distance = getDistance(data[0].x, data[0].y, position.coords.longitude, position.coords.latitude) + " " + getDirection(data[0].x, data[0].y, -122.6819,45.5200);
+						$scope.flipped = false;
+					})
+					.error(function(err){
+						console.log(err);
+					});
+			}, function(error){
+				console.log(error);
+			});
+		}
+		else {
+			console.log("You don't have the ability to geolocate :-(");
+		}
+		
+	}
+
 	
 }]);
+
+// Thanks to http://www.movable-type.co.uk/scripts/latlong.html for this function
+function getDistance(lon1, lat1, lon2, lat2){
+	var φ1 = lat1.toRadians(), φ2 = lat2.toRadians(), Δλ = (lon2-lon1).toRadians(), R = 20925524.9; // gives d in feet
+	return d = Math.round(Math.acos( Math.sin(φ1)*Math.sin(φ2) + Math.cos(φ1)*Math.cos(φ2) * Math.cos(Δλ) ) * R);
+}
+
+function getDirection(lon1, lat1, lon2, lat2){
+	direction = "";
+	direction += (lat2-lat1 >= 0) ? "N" : "S";
+	direction += (lon2-lon1 >= 0) ? "E" : "W";
+	return direction;
+}
+
+if (typeof(Number.prototype.toRadians) === "undefined") {
+  Number.prototype.toRadians = function() {
+    return this * Math.PI / 180;
+  }
+}
+
 
 
 app.directive("centerX", function(){
