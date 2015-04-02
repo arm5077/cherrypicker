@@ -25,7 +25,7 @@ app.get("/trees/:id", function(request, response){
 	
 	pg.connect(database_url, function(err, client, done) {
 		if( err ) throw err;
-		client.query("SELECT * FROM trees.trees WHERE id = $1", [request.params.id], function(err, result){
+		client.query("SELECT * FROM trees WHERE id = $1", [request.params.id], function(err, result){
 			if( err )
 				throw err;
 
@@ -46,7 +46,7 @@ app.get("/nearest/:lng/:lat", function(request, response){
 		console.log("connected to database");
 		if( err ) throw err;	
 		client.query("SELECT *, ST_DISTANCE(geom, ST_SetSRID(ST_MakePoint($1, $2), 4326)) as distance \
-			FROM trees.trees \
+			FROM trees \
 			WHERE common_name LIKE '% cherry%' \
 			ORDER BY distance ASC LIMIT 5 ", 
 		[request.params.lng, request.params.lat], function(err, result){
