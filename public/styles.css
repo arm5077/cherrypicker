@@ -31,7 +31,7 @@ html, body {
 body {
 	font-family:Roboto, sans-serif;
 	background-color: #DCC8C8;
-	overflow:hidden;
+	overflow-x:hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -102,18 +102,18 @@ tree {
 	position:absolute;
 	top:0;
 	left: 0;
-	transition: top .25s;
+	transition: left .25s;
 }
 	.section.onStage {
-		top:0;
+		left:0;
 	}
 	
 	.section.slidUp {
-		top: -100%;
+		left: -100%;
 	}
 	
 	.section.slidDown {
-		top: 100%;
+		left: 100%;
 	}
 
 	.section#directions {

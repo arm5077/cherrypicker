@@ -27,7 +27,7 @@
 
 <body ng-controller="treeController">
 
-	<div class="section" id="intro" ng-class="{slidUp: onStage == 'directions', onStage: onStage == 'search'}" ng-swipe-up="onStage='directions'">
+	<div class="section" id="intro" ng-class="{slidUp: onStage == 'directions', onStage: onStage == 'search'}" ng-swipe-left="onStage='directions'">
 			<h1 class="title" on-top above="centered" margin-bottom="20">Cherrypicker</h1>
 			<div id="centered" class = "flip-container" style="width:300px; height:300px" center-x center-y ng-class="{flip: flipped}" ng-click="getTree()">
 				<div class = "flipper" >
@@ -56,11 +56,11 @@
 				</div>
 				
 			</div>
-			<h3 on-bottom below="centered" class="nondescript-text" style="margin-top:20px">Tap to find a tree, or swipe up for more options</h3>
+			<h3 on-bottom below="centered" class="nondescript-text" style="margin-top:20px">Tap to find a tree.</h3>
 	</div>
 
-	<div class="section" id="directions" ng-class="{slidDown: onStage == 'search', onStage: onStage == 'directions'}" ng-swipe-down="onStage='search'">
-		<h3 class="nondescript-text" style="margin:10px 0px">Swipe down to go back to your tree.</h3>
+	<div class="section" id="directions" ng-class="{slidDown: onStage == 'search', onStage: onStage == 'directions'}" ng-swipe-right="onStage='search'">
+		<h3 class="nondescript-text" style="margin:10px 0px">Swipe right to go back to your tree.</h3>
 		<h1 class="title">directions</h1>
 		<ol>
 			<li ng-repeat="step in route.legs[0].steps">
