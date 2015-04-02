@@ -18,6 +18,7 @@
   "homepage": "https://github.com/arm5077/cherrypicked",
   "dependencies": {
     "express": "^4.12.3",
-    "pg": "^4.3.0"
+    "pg": "^4.3.0",
+    "request": "^2.54.0"
   }
 }

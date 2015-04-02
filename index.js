@@ -2,6 +2,9 @@ var express = require("express");
 var app = express();
 var router = express.Router();
 var pg = require('pg');
+var request = require('request');
+
+var mapquest_key = process.env.MAPQUEST_KEY;
 
 // Turn on server
 var port = process.env.PORT || 3000;
@@ -51,11 +54,18 @@ app.get("/nearest/:lng/:lat", function(request, response){
 			response.status(200).json(result.rows);
 			done();
 			client.end();
+			console.log("Disconnected");
 		});
 	});
 	
 })
 
-
+// Wrapper for Mapquest's directions API
+app.get("/directions/:lng1/:lat1/:lng2/:lat2", function(req, response){
+	request('http://open.mapquestapi.com/directions/v2/route?key=' + mapquest_key + '&from=' + req.params.lat1 + ',' + req.params.lng1 + '&to=' + req.params.lat2 + ',' + req.params.lng2 + '&routeType=pedestrian', function( error, res, body ){
+		if(error) throw error;
+		response.status(200).json(JSON.parse(body));
+	});
+})
 
 //SELECT *, ST_DISTANCE(geom, ST_SetSRID(ST_MakePoint(-77.054505, 38.935440), 4326)) as distance FROM trees.trees WHERE common_name LIKE '%cherry%' ORDER BY distance ASC LIMIT 5 
