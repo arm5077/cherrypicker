@@ -6,7 +6,6 @@ var request = require('request');
 
 var database_url = process.env.DATABASE_URL || "postgres://amcgill@localhost/trees"
 
-
 // Turn on server
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
@@ -43,7 +42,7 @@ app.get("/trees/:id", function(request, response){
 app.get("/nearest/:lng/:lat", function(request, response){
 	console.log(request.params.lng);
 	
-	pg.connect("postgres://amcgill@localhost/trees", function(err, client, done){
+	pg.connect(database_url, function(err, client, done){
 		console.log("connected to database");
 		if( err ) throw err;	
 		client.query("SELECT *, ST_DISTANCE(geom, ST_SetSRID(ST_MakePoint($1, $2), 4326)) as distance \
@@ -61,12 +60,5 @@ app.get("/nearest/:lng/:lat", function(request, response){
 	
 })
 
-// Wrapper for Mapquest's directions API
-app.get("/directions/:lng1/:lat1/:lng2/:lat2", function(req, response){
-	request('http://open.mapquestapi.com/directions/v2/route?key=' + mapquest_key + '&from=' + req.params.lat1 + ',' + req.params.lng1 + '&to=' + req.params.lat2 + ',' + req.params.lng2 + '&routeType=pedestrian', function( error, res, body ){
-		if(error) throw error;
-		response.status(200).json(JSON.parse(body));
-	});
-})
 
 //SELECT *, ST_DISTANCE(geom, ST_SetSRID(ST_MakePoint(-77.054505, 38.935440), 4326)) as distance FROM trees.trees WHERE common_name LIKE '%cherry%' ORDER BY distance ASC LIMIT 5 
