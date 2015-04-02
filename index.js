@@ -4,7 +4,7 @@ var router = express.Router();
 var pg = require('pg');
 var request = require('request');
 
-var mapquest_key = process.env.MAPQUEST_KEY;
+var mapquest_key = process.env.MAP_KEY;
 
 // Turn on server
 var port = process.env.PORT || 3000;

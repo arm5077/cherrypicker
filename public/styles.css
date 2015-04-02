@@ -30,7 +30,7 @@ html, body {
 
 body {
 	font-family:Roboto, sans-serif;
-	background-color: #FCEA94;
+	background-color: #DCC8C8;
 	overflow:hidden;
 }
 
@@ -48,8 +48,13 @@ h1.title, h2 {
 	margin-bottom: 20px;
 }
 
+h3 {
+	padding:0px 50px;
+	text-align:center;
+}
+
 .roundButton {
-	background-color: #FAA61A;
+	background-color: #EA7F83;
 	width:100%;
 	height: 100%;
 	margin:auto;
@@ -112,7 +117,7 @@ tree {
 	}
 
 	.section#directions {
-		overflow:scroll;
+		overflow-y:scroll;
 	}
 
 .nondescript-text {
@@ -198,4 +203,8 @@ ol {
 				min-width:230px;
 				padding:10px;
 			}
-			}
+			
+		ol li img {
+			border: 5px solid #EA7F83;
+			border-radius: 10px;
+		}
