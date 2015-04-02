@@ -64,16 +64,8 @@
 		<h1 class="title">directions</h1>
 		<ol>
 			<li ng-repeat="step in route.legs[0].steps">
-				<table>
-					<tr>
-						<td ng-bind-html="renderHTML(step.instructions)">
-							
-						</td>
-						<td>
-							<img ng-src="http://maps.googleapis.com/maps/api/staticmap?size=250x250&path=enc:{{step.encoded_lat_lngs}}" />
-						</td>
-					</tr>
-				</table>
+				<div ng-bind-html="renderHTML(step.instructions)" style="margin-bottom:10px"></div>
+				<img ng-src="http://maps.googleapis.com/maps/api/staticmap?size=250x250&path=enc:{{step.encoded_lat_lngs}}" />
 			</li>
 		</ol>
 		
