@@ -4,7 +4,8 @@ var router = express.Router();
 var pg = require('pg');
 var request = require('request');
 
-var mapquest_key = process.env.MAP_KEY;
+var database_url = process.env.DATABASE_URL || "postgres://amcgill@localhost/trees"
+
 
 // Turn on server
 var port = process.env.PORT || 3000;
@@ -23,7 +24,7 @@ app.use("/assets", express.static(__dirname + "/public/assets/"));
 // Endpoint to deliver information about a tree
 app.get("/trees/:id", function(request, response){
 	
-	pg.connect("postgres://amcgill@localhost/trees", function(err, client, done) {
+	pg.connect(database_url, function(err, client, done) {
 		if( err ) throw err;
 		client.query("SELECT * FROM trees.trees WHERE id = $1", [request.params.id], function(err, result){
 			if( err )
