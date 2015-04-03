@@ -3,7 +3,8 @@ app = angular.module("treeApp", ['ngAnimate', 'ngTouch', 'swipe']);
 var directionsService = new google.maps.DirectionsService();
 
 app.controller("treeController", ["$scope", "$http", "$sce", function($scope, $http, $sce){
-
+	
+	window.scroll(0,0);
 	
 	$scope.flipped = false;
 	$scope.onStage = "search";
