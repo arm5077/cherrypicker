@@ -27,7 +27,7 @@
 
 <body ng-controller="treeController">
 
-	<div class="section" id="intro" ng-class="{slidUp: onStage == 'directions', onStage: onStage == 'search'}" ng-swipe-left="onStage='directions'">
+	<div class="section" id="intro" ng-class="{slidUp: onStage == 'directions', onStage: onStage == 'search', slidDown: onStage == 'about'}" ng-swipe-left="onStage='directions'" ng-swipe-right="onStage='about'">
 			<h1 class="title" on-top above="centered" margin-bottom="20">Cherrypicker</h1>
 			<div id="centered" class = "flip-container" style="width:300px; height:300px" center-x center-y ng-class="{flip: flipped}" ng-click="getTree()">
 				<div class = "flipper" >
@@ -56,10 +56,10 @@
 				</div>
 				
 			</div>
-			<h3 on-bottom below="centered" class="nondescript-text" style="margin-top:20px">{{(loaded == true) ? "Swipe left to get directions." : "Tap to find a tree."}}</h3>
+			<h3 on-bottom below="centered" class="nondescript-text" style="margin-top:20px">{{(loaded == true) ? "Swipe left to get directions. Swipe right to learn more about this app." : "Tap to find a tree."}}</h3>
 	</div>
 
-	<div class="section" id="directions" ng-class="{slidDown: onStage == 'search', onStage: onStage == 'directions'}" ng-swipe-right="onStage='search'">
+	<div class="section" id="directions" ng-class="{slidDown: onStage == 'search' || onStage == 'about', onStage: onStage == 'directions'}" ng-swipe-right="onStage='search'">
 		<h3 class="nondescript-text" style="margin:10px 0px">Swipe right to go back to your tree.</h3>
 		<h1 class="title">directions</h1>
 		<ol>
@@ -70,7 +70,17 @@
 		</ol>
 		
 	</div>
-
+	
+	<div class="section" id="about" ng-class="{slidUp: onStage == 'search' || onStage == 'directions', onStage: onStage == 'directions'}" ng-swipe-left="onStage='search'">
+		<h3 class="nondescript-text" style="margin:10px 0px">Swipe left to go back to your tree.</h3>
+		<h1 class="title" ng-class="{slidUp: onStage == 'search', onStage: onStage == 'about'}">about</h1>
+		<div class = "text">
+			<p><strong>Cherrypicker</strong> tells you the location of the nearest cherry tree in Washington, D.C.</p>
+			<p>It can do this thanks to the DC Office of the Chief Technology Officer, which maintains a <a  href="http://opendata.dc.gov/datasets/d6364e8d068e4e558c82040569f5d33a_23">GIS shapefile</a> of every street tree in the district.</p>
+			<p>This app does not include the cherry trees at the Tidal Basin. You can read more about those <a href="http://www.nps.gov/cherry/cherry-blossom-history.htm">here</a>.
+			<p>Created by <a href="http://twitter.com/andrewmcgill">Andrew McGill</a> at <a href="http://www.nationaljournal.com/">National Journal</a>.</p>
+		</div>
+	</div>
 	
 </body>
 

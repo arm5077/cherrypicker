@@ -34,6 +34,10 @@ body {
 	overflow-x:hidden;
 }
 
+a {
+	color: #952226;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	margin:0;
 	padding:0;
@@ -208,3 +212,9 @@ ol {
 			border: 5px solid #EA7F83;
 			border-radius: 10px;
 		}
+		
+.text {
+	max-width:500px;
+	margin:10px auto;
+	padding:0px 50px;
+}
