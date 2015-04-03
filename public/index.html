@@ -2,9 +2,22 @@
 <html ng-app="treeApp">
 <head>
 	
+	<link rel="icon" type="image/png" href="logo.png">
+	
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	
+    <meta name="description" content="It's cherry blossom season. Cherrypicker finds nearest tree to you and helps you beat the rush." />
+    <meta property="og:description" content="It's cherry blossom season. Cherrypicker finds nearest tree to you and helps you beat the rush." />
+	<meta property="og:title" content="Cherrypicker | Connecting you with the nearest Washington, D.C. cherry tree" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://nj-cherrypicker.herokuapp.com" />
+    <meta property="og:image" content="logo.png" />
+	<meta property="og:site_name" content="http://nj-cherrypicker.herokuapp.com" />
+	<meta name="syndication-source" content="http://nj-cherrypicker.herokuapp.com" />
+	
+	
+	<title>Cherrypicker | Connecting you with the nearest Washington, D.C. cherry tree</title>
 	
 	<!-- Angular -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
@@ -14,6 +27,7 @@
 	
 	<!-- Google Maps API -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEUmbq9MBRp2BlXsEKqBCQpaYvhMtmna8"></script>
+	
 	<!-- FontAwesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	
@@ -22,12 +36,92 @@
 	
 	<!-- Site-specific styles -->
 	<link rel="stylesheet" href="styles.css" />
+
+	<script>
+		var OMNITURE_REPORT_SUITE = 'atlanticnationaljournal2013prod';
+	</script>
+	
+
+	<!-- Omniture -->
+	<script type="text/javascript" Src="http://www.nationaljournal.com/js/libs/omniture/core.js"></script>
+
+
+	<script>
+	    var s = s || {};
+	            s.prop1 = '';
+	            s.prop2 = '';
+	            s.prop3 = 'cherrypicker: connecting you with the nearest washington, d.c. cherry tree';
+	            s.prop4 = '050288061386';
+	            s.prop5 = 'article';
+	            s.prop6 = 'twentysixteen';
+	            s.prop7 = '';
+	            s.prop8 = '';
+	            s.prop9 = '';
+	            s.prop10 = '';
+	            s.prop11 = '15';
+	            s.prop12 = 'thursday';
+	            s.prop13 = '';
+	            s.prop14 = '';
+	            s.prop15 = '257:andrew mcgill';
+	            s.prop16 = '';
+	            s.prop17 = 'free';
+	            s.prop18 = '/2016-elections/in-90s-babies-hillary-clinton-gets-a-second-chance-with-young-voters-20150402';
+	            s.prop19 = '';
+	            s.prop20 = '';
+	            s.prop21 = '';
+	            s.prop22 = '';
+	            s.prop23 = '';
+	            s.prop24 = '';
+	            s.prop25 = '';
+	            s.prop26 = '';
+	            s.prop27 = '';
+	            s.prop28 = '04';
+	            s.prop29 = '03';
+	            s.prop30 = '2015';
+	            s.prop31 = '';
+	            s.prop32 = '';
+	            s.prop33 = 'not_set';
+	            s.prop34 = '';
+	            s.prop35 = '';
+	            s.prop36 = '';
+	            s.prop37 = '';
+	            s.prop38 = '';
+	            s.prop39 = '';
+	            s.prop40 = '';
+	            s.prop41 = '';
+	            s.prop42 = '';
+	            s.prop43 = '';
+	            s.prop44 = '';
+	            s.prop45 = '';
+	            s.prop46 = '';
+	            s.prop47 = '';
+	            s.prop48 = '';
+	            s.prop49 = '';
+	            s.prop50 = '';
+	            s.prop51 = '';
+	            s.prop52 = 'article_050288061386';
+	            s.prop53 = '';
+	            s.prop54 = '';
+	            s.prop55 = '';
+	            s.prop56 = '20';
+	            s.prop57 = '';
+	            s.prop58 = '';
+	            s.prop59 = '0';
+	            s.prop60 = '';
+	            s.prop61 = '';
+	            s.prop62 = '';
+	            s.prop63 = '';
+	            s.prop64 = 'na';
+	            s.prop65 = '';
+	            s.pageName = 'cherrypicker: connecting you with the nearest washington, d.c. cherry tree';
+	            s.channel = '';
+	    </script>
 	
 </head>
 
 <body ng-controller="treeController">
 
-	<div class="section" id="intro" ng-class="{slidUp: onStage == 'directions', onStage: onStage == 'search', slidDown: onStage == 'about'}" ng-swipe-left="onStage='directions'" ng-swipe-right="onStage='about'">
+	<div class="section" id="intro" ng-class="{slidUp: onStage == 'directions', onStage: onStage == 'search', slidDown: onStage == 'about'}" ng-swipe-left="onStage=(loaded == true) ? 'directions' : 'search'" ng-swipe-right="onStage='about'">
 			<h1 class="title" on-top above="centered" margin-bottom="20">Cherrypicker</h1>
 			<div id="centered" class = "flip-container" style="width:300px; height:300px" center-x center-y ng-class="{flip: flipped}" ng-click="getTree()">
 				<div class = "flipper" >
@@ -76,9 +170,9 @@
 		<h1 class="title" ng-class="{slidUp: onStage == 'search', onStage: onStage == 'about'}">about</h1>
 		<div class = "text">
 			<p><strong>Cherrypicker</strong> tells you the location of the nearest cherry tree in Washington, D.C.</p>
-			<p>It can do this thanks to the DC Office of the Chief Technology Officer, which maintains a <a  href="http://opendata.dc.gov/datasets/d6364e8d068e4e558c82040569f5d33a_23">GIS shapefile</a> of every street tree in the district.</p>
-			<p>This app does not include the cherry trees at the Tidal Basin. You can read more about those <a href="http://www.nps.gov/cherry/cherry-blossom-history.htm">here</a>.
-			<p>Created by <a href="http://twitter.com/andrewmcgill">Andrew McGill</a> at <a href="http://www.nationaljournal.com/">National Journal</a>.</p>
+			<p>It can do this thanks to the DC Office of the Chief Technology Officer, which maintains a <a target="_blank"  href="http://opendata.dc.gov/datasets/d6364e8d068e4e558c82040569f5d33a_23">GIS shapefile</a> of every street tree in the district.</p>
+			<p>This app does not include the cherry trees at the Tidal Basin. You can read more about those <a target="_blank" href="http://www.nps.gov/cherry/cherry-blossom-history.htm">here</a>. (And see pretty <a target="_blank" href="http://www.nationaljournal.com/pictures-video/d-c-cherry-blossom-season-in-photographs-20150320"><i class="fa fa-camera"></i></a>!)
+			<p><a target="_blank" href="http://twitter.com/andrewmcgill">Andrew McGill</a> made this at <a target="_blank" href="http://www.nationaljournal.com/">National Journal</a>.</p>
 		</div>
 	</div>
 	

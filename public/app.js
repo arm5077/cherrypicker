@@ -63,7 +63,7 @@ app.controller("treeController", ["$scope", "$http", "$sce", function($scope, $h
 			});
 		}
 		else {
-			console.log("You don't have the ability to geolocate :-(");
+			alert("You don't have the ability to geolocate :-(");
 		}
 		
 	}

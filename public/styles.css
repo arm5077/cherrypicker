@@ -213,8 +213,9 @@ ol {
 			border-radius: 10px;
 		}
 		
-.text {
+#about .text {
 	max-width:500px;
 	margin:10px auto;
-	padding:0px 50px;
+	padding:0px 25px;
+	line-height:1.4em;
 }
