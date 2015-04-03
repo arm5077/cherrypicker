@@ -52,9 +52,13 @@ app.get("/nearest/:lng/:lat", function(request, response){
 		[request.params.lng, request.params.lat], function(err, result){
 			if(err) throw err;
 			response.status(200).json(result.rows);
-			done();
-			client.end();
-			console.log("Disconnected");
+
+			client.query("INSERT INTO queries (lat, lng) VALUES ($1, $2)",
+			[request.params.lat, request.params.lng], function(err, result){
+					done();
+					client.end();
+					console.log("Disconnected");
+			});
 		});
 	});
 	
