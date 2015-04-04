@@ -18,7 +18,7 @@ app.controller("treeController", ["$scope", "$http", "$sce", function($scope, $h
 		console.log("asking for tree");
 		$scope.flipped = true;
 		if( navigator.geolocation){
-			navigator.geolocation.getCurrentPosition(function(position){
+			navigator.geolocation.watchPosition(function(position){
 				console.log(position);
 				$http.get("nearest/" + position.coords.longitude + "/" + position.coords.latitude)
 					.success(function(data, status, headers, config){
