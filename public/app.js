@@ -37,23 +37,11 @@ app.controller("treeController", ["$scope", "$http", "$sce", function($scope, $h
 						directionsService.route(request, function(result, status) {
 							if (status == google.maps.DirectionsStatus.OK) {
 								$scope.route = result.routes[0];
+								console.log($scope.route);
 							} else {
 								console.log(status)
 							}
 			  			});
-						
-						/*
-						console.log("https://maps.googleapis.com/maps/api/directions/json?origin=" + position.coords.longitude + "," + position.coords.latitude + "&destination=" + data[0].x + "," + data[0].y + "&mode=walking&key=AIzaSyBEUmbq9MBRp2BlXsEKqBCQpaYvhMtmna8");
-						$http.get("https://maps.googleapis.com/maps/api/directions/json?origin=" + position.coords.latitude + "," + position.coords.longitude + "&destination=" + data[0].y + "," + data[0].x + "&mode=walking&key=AIzaSyBEUmbq9MBRp2BlXsEKqBCQpaYvhMtmna8")
-							.success(function(data, status, headers, config){
-								//$scope.route = data.route;
-								console.log(data);
-							})
-							.error(function(err){
-								console.log(err);
-							})
-						*/	
-						
 					})
 					.error(function(err){
 						console.log(err);
@@ -67,7 +55,6 @@ app.controller("treeController", ["$scope", "$http", "$sce", function($scope, $h
 		}
 		
 	}
-
 	
 }]);
 

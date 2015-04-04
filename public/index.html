@@ -159,7 +159,7 @@
 		<ol>
 			<li ng-repeat="step in route.legs[0].steps">
 				<div ng-bind-html="renderHTML(step.instructions)" style="margin-bottom:10px"></div>
-				<img ng-src="http://maps.googleapis.com/maps/api/staticmap?size=250x250&key=AIzaSyBEUmbq9MBRp2BlXsEKqBCQpaYvhMtmna8&path=enc:{{step.encoded_lat_lngs}}" />
+				<img ng-src="http://maps.googleapis.com/maps/api/staticmap?size=250x250&key=AIzaSyBEUmbq9MBRp2BlXsEKqBCQpaYvhMtmna8&path=enc:{{step.encoded_lat_lngs}}&markers=size:mid|color:blue|label:1|{{step.start_location.k}},{{step.start_location.D}}&markers=size:mid|color:blue|label:2|{{step.end_location.k}},{{step.end_location.D}}" />
 			</li>
 		</ol>
 		
