@@ -43,8 +43,8 @@ app.get("/nearest/:lng/:lat", function(request, response){
 	console.log(request.params.lng);
 	
 	pg.connect(database_url, function(err, client, done){
-		console.log("connected to database");
 		if( err ) throw err;	
+		console.log("connected to database");
 		client.query("SELECT *, ST_DISTANCE(geom, ST_SetSRID(ST_MakePoint($1, $2), 4326)) as distance \
 			FROM trees \
 			WHERE common_name LIKE '% cherry%' \
@@ -55,6 +55,7 @@ app.get("/nearest/:lng/:lat", function(request, response){
 
 			client.query("INSERT INTO queries (lat, lng) VALUES ($1, $2)",
 			[request.params.lat, request.params.lng], function(err, result){
+				if(err) throw err;
 					done();
 					client.end();
 					console.log("Disconnected");
