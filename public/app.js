@@ -21,7 +21,7 @@ app.controller("treeController", ["$scope", "$http", "$sce", function($scope, $h
 		if( navigator.geolocation){
 			navigator.geolocation.watchPosition(function(position){
 				console.log(position);
-				if(position.coords.accuracy < $scope.accuracy || $scope.accuracy = ""){
+				if(position.coords.accuracy < $scope.accuracy || $scope.accuracy == ""){
 					$scope.accuracy = position.coords.accuracy;
 					
 					$http.get("nearest/" + position.coords.longitude + "/" + position.coords.latitude)
