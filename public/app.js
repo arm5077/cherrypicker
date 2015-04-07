@@ -8,7 +8,6 @@ app.controller("treeController", ["$scope", "$http", "$sce", function($scope, $h
 	
 	$scope.flipped = false;
 	$scope.onStage = "search";
-	$scope.accuracy = "";
 	$scope.console = console;
 
 	$scope.renderHTML = function(html){
@@ -18,6 +17,7 @@ app.controller("treeController", ["$scope", "$http", "$sce", function($scope, $h
 	$scope.getTree = function(){
 		console.log("asking for tree");
 		$scope.flipped = true;
+		$scope.accuracy = "";
 		if( navigator.geolocation){
 			navigator.geolocation.watchPosition(function(position){
 				console.log(position);
