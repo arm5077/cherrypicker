@@ -6,13 +6,13 @@
 	</div>
 	
 	<ul class="results">
-		<li ng-repeat="tree in $parent.trees">
-			<a ng-href="#/tree/{{tree.id}}">
+		<a ng-href="#/tree/{{tree.id}}"  ng-repeat="tree in $parent.trees">
+			<li>
 				<div class="name">{{tree.cmmn_nm}}</div>
 				<div class="distance"> {{ Math.round(tree.distance * 100000 * 3.28084) }} ft. </div>
 				<div style="clear: both"></div>
-			</a>
-		</li>
+			</li>
+		</a>
 	</ul>
 
 
