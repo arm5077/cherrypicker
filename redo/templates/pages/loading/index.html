@@ -1,0 +1,22 @@
+<div class="loading page">
+
+	<div class = "center-vertical">
+		
+		<div class="trees">
+			<div class="treeContainer" ng-repeat="tree in [0,1,2]">
+				<div class="tree" style="-webkit-animation-delay: {{tree / 2}}s">
+					<div class="front">
+						<div class="symbol">A</div>
+					</div>
+					<div class="back">
+						<div class="symbol">A</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<ul class="taskList">
+			<li ng-repeat="task in tasks" ng-bind-html="renderHTML('<strong>' + task + '</strong>')"></li>
+		</ul>
+	</div>
+</div>

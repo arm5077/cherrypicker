@@ -1,0 +1,51 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- google maps -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq-5d5tblDzDa3FQdZkPllYNmhk1zpk4w"></script>
+
+	<!-- angular.js -->
+	<script src="bower_components/angular/angular.min.js"></script>
+	
+	<!-- angular route -->
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+
+	<!-- angular animate -->
+	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+
+	<!-- fastclick -->
+	<script src="bower_components/fastclick/lib/fastclick.js"></script>
+
+	<!-- moment -->
+	<script src="bower_components/moment/moment.js"></script>
+	
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	
+	<!-- Site-specific styles -->
+	<link rel="stylesheet" href="styles.css" />
+	
+</head>
+<body ng-controller="mainController">
+
+	<!-- Views go here -->
+	<div class="views" ng-view></div>
+
+
+</body>
+
+<!-- My scripts -->
+<script src="js/app.js"></script>
+
+<script src="js/controllers/introController.js"></script>
+<script src="js/controllers/loadingController.js"></script>
+<script src="js/controllers/listController.js"></script>
+<script src="js/controllers/mapController.js"></script>
+<script src="js/controllers/treeController.js"></script>
+<script src="js/controllers/infoController.js"></script>
+<script src="js/routes.js"></script>
+
+</html>

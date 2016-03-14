@@ -1,0 +1,60 @@
+<div class="tree page">
+
+	<div class="header">
+		<a class="back" back><i class="fa fa-chevron-left"></i></a>
+		<a href="#/info " class="info"><i class="fa fa-info-circle"></i></a>
+	</div>
+	
+	<div class="content">
+		<div class="title">{{tree.cmmn_nm}}</div>
+		<div class="address" ng-bind="tree.vicinity" ng-if="tree.vicinity"></div>
+	</div>
+	
+	<div id="mapContainer">
+	</div>
+
+	<table class="stats">
+		<tr ng-if="tree.sci_nm">
+			<td>Scientific name:</td>
+			<td>{{ tree.sci_nm }}</td>
+		</tr>
+		<tr ng-if="tree.date_plant">
+			<td>Age:</td>
+			<td>{{Math.ceil(moment().diff(moment(tree.date_plant), "days" ) / 365 ) }} years (planted {{moment(tree.date_plant).format('YYYY')}})</td>
+		</tr>
+		<tr ng-if="tree.condition">
+			<td>Condition:</td>
+			<td>{{tree.condition}}</td>
+		</tr>
+		<tr ng-if="tree.conditiodt">
+			<td>Date last checked:</td>
+			<td>{{moment(tree.conditiodt).format('MMM. D, YYYY')}}</td>
+		</tr>
+		<tr ng-if="tree.disease">
+			<td>Disease(s):</td>
+			<td>{{tree.disease}}</td>
+		</tr>
+		<tr ng-if="tree.pests">
+			<td>Pests:</td>
+			<td>{{tree.pests}}</td>
+		</tr>
+	</table>
+	
+	<div class="notes" ng-if="tree.tree_notes">
+		<div class="label">Notes</div>
+		<div class="text" ng-if="tree.tree_notes"></div>
+	</div>
+	
+	{{$rootScope}}
+	
+	<div class="picture" >
+		<div class="label">It probably looks like this</div>
+		<img ng-src="assets/{{ tree.cmmn_nm.replace(' ', '_') }}.jpg" />
+	</div>
+	
+	
+	<a class="footer" target="blank" ng-href="https://www.google.com/maps/dir/{{tree.y}},{{tree.x}}/{{position.latitude}},{{position.longitude}}">
+		Get directions from Google Maps
+	</a>
+
+</div>
