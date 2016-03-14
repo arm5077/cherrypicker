@@ -123,14 +123,29 @@ a {
 	z-index: 2;
 }
 
+.header .nameplate {
+	margin-left: -3%;
+	width: 100%;
+	position: absolute;
+	z-index: -1;
+	text-align: center;
+	font-weight: 100;
+}
+
 .header .back, .header .info {
 	float: left;
 	font-size: 14pt;
     margin-top: 0px;
+	z-index: 2;
+}
+
+.header .back {
+	padding:right: 20px;
 }
 
 .header .info {
 	float: right;
+	padding-left: 20px;
 }
 
 .logo {
