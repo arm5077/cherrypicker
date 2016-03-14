@@ -46,7 +46,7 @@ app.get("/api/nearest/:lng/:lat", function(request, response){
 		if( err ) throw err;	
 		console.log("connected to database");
 		client.query("SELECT id, cmmn_nm, ST_X(geom) as x, ST_Y(geom) as y, ST_DISTANCE(geom, ST_SetSRID(ST_MakePoint($1, $2), 4326)) as distance \
-			FROM trees.trees \
+			FROM trees \
 			ORDER BY distance ASC LIMIT 10 ", 
 		[request.params.lng, request.params.lat], function(err, result){
 			if(err) throw err;
