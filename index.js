@@ -25,7 +25,7 @@ app.get("/api/trees/:id", function(request, response){
 	
 	pg.connect(database_url, function(err, client, done) {
 		if( err ) throw err;
-		client.query("SELECT ST_X(geom) as x, ST_Y(geom) as y, * FROM trees.trees WHERE id = $1", [request.params.id], function(err, result){
+		client.query("SELECT ST_X(geom) as x, ST_Y(geom) as y, * FROM trees WHERE id = $1", [request.params.id], function(err, result){
 			if( err )
 				throw err;
 

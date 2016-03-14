@@ -257,6 +257,7 @@ a {
 
 .loading .treeContainer {
 	perspective: 1000;
+	-webkit-perspective: 1000;
 	margin-right: 15px;
 	display: inline-block;
 }
@@ -274,12 +275,14 @@ a {
 .loading .tree {
 	transition: 1s;
 	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
 	position: relative;
 	animation: 3s flip infinite;
 }
 
 .loading .front, .loading .back {
 	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -292,12 +295,14 @@ a {
 .loading .front {
 	z-index: 2;
 	transform: rotateY(0deg);
+	-webkit-transform: rotateY(0deg);
 	border: 4px solid #EC008C;
 	color: #EC008C;
 }
 
 .loading .back {
 	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
 	color: white;
 	background-color: #EC008C;
 }
