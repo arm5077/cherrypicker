@@ -2,6 +2,9 @@ angular.module("app")
 .controller("mapController", ["$scope", "$http", "$sce", function($scope, $http, $sce){	
 console.log("bazinga");
 
+	if( !$scope.position.latitude )
+		window.location.hash = "loading";
+
 	var map = new google.maps.Map(document.getElementById('mapContainer'), {
 		center: {lat: $scope.position.latitude, lng: $scope.position.longitude},
 		zoom: 12
