@@ -67,7 +67,7 @@ app.get("/api/random", function(request, response){
 	pg.connect(database_url, function(err, client, done){
 		if( err ) throw err;	
 		console.log("connected to database");
-		client.query("select id, cmmn_nm, ST_X(geom) as x, ST_Y(geom) as y from trees.trees where random() < 0.01 limit 100;", function(err, result){
+		client.query("select id, cmmn_nm, ST_X(geom) as x, ST_Y(geom) as y from trees where random() < 0.01 limit 100;", function(err, result){
 			if(err) throw err;
 			response.status(200).json(result.rows);
 			client.end();
