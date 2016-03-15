@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var router = express.Router();
 var pg = require('pg');
+var moment = require('moment');
 var request = require('request');
 
 var database_url = process.env.DATABASE_URL || "postgres://amcgill@localhost/trees"
@@ -25,7 +26,7 @@ app.get("/api/trees/:id", function(request, response){
 	
 	pg.connect(database_url, function(err, client, done) {
 		if( err ) throw err;
-		client.query("SELECT ST_X(geom) as x, ST_Y(geom) as y, * FROM trees WHERE id = $1", [request.params.id], function(err, result){
+		client.query("SELECT ST_X(geom) as x, ST_Y(geom) as y, * FROM trees.trees WHERE id = $1", [request.params.id], function(err, result){
 			if( err )
 				throw err;
 
@@ -46,13 +47,31 @@ app.get("/api/nearest/:lng/:lat", function(request, response){
 		if( err ) throw err;	
 		console.log("connected to database");
 		client.query("SELECT id, cmmn_nm, ST_X(geom) as x, ST_Y(geom) as y, ST_DISTANCE(geom, ST_SetSRID(ST_MakePoint($1, $2), 4326)) as distance \
-			FROM trees \
+			FROM trees.trees \
 			ORDER BY distance ASC LIMIT 10 ", 
 		[request.params.lng, request.params.lat], function(err, result){
+			if(err) throw err;
+			console.log("INSERT INTO trees.latlngs (lat, lng, timestamp) VALUES (" + request.params.lat + ", " + request.params.lng + "," + moment().format('YYYY-MM-DD HH:mm:ss') + ")");
+			client.query("INSERT INTO trees.latlngs (lat, lng, timestamp) VALUES (" + request.params.lat + ", " + request.params.lng + ",'" + moment().format('YYYY-MM-DD HH:mm:ss') + "')", function(err){
+				if(err) throw err;
+				response.status(200).json(result.rows);
+				client.end();
+			});
+			
+		});
+	});	
+})
+
+// Endpoint to get random rows
+app.get("/api/random", function(request, response){
+	
+	pg.connect(database_url, function(err, client, done){
+		if( err ) throw err;	
+		console.log("connected to database");
+		client.query("select id, cmmn_nm, ST_X(geom) as x, ST_Y(geom) as y from trees.trees where random() < 0.01 limit 100;", function(err, result){
 			if(err) throw err;
 			response.status(200).json(result.rows);
 			client.end();
 		});
-	});
-	
+	});	
 })

@@ -1,4 +1,9 @@
 <div class="map page">
+	
+	<div class="header" ng-if="errorMessage">
+		<div class="nameplate" style="position: static"><strong>{{errorMessage}}</strong></div>
+	</div>
+	
 	<div id="mapContainer"></div>
 	
 	<div class="footer">

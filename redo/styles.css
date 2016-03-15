@@ -140,7 +140,7 @@ a {
 }
 
 .header .back {
-	padding:right: 20px;
+	padding-right: 20px;
 }
 
 .header .info {
@@ -266,6 +266,10 @@ a {
 		opacity: 1;
 		max-height: 200px;
 	}
+
+.loading ul.taskList li a {
+	text-decoration: underline;
+}
 
 .loading .trees {
 	text-align: center;

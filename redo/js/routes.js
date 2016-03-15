@@ -11,6 +11,10 @@ angular.module("app").config(function($routeProvider){
 		templateUrl: "templates/pages/list/",
 		controller: "listController"
 	})
+	.when("/map/:random", {
+		templateUrl: "templates/pages/map/",
+		controller: "mapController"
+	})
 	.when("/map", {
 		templateUrl: "templates/pages/map/",
 		controller: "mapController"

@@ -1,5 +1,5 @@
 angular.module("app")
-.controller("mapController", ["$scope", "$http", "$sce", function($scope, $http, $sce){	
+.controller("mapController", ["$scope", "$http", "$sce", "$routeParams", function($scope, $http, $sce, $routeParams){	
 
 	if( $scope.$parent.trees.length <= 0 )
 		window.location.hash = "loading";
@@ -36,6 +36,11 @@ angular.module("app")
 
 
 		map.fitBounds(bounds);
+	
+		if( $routeParams.random ){
+			$scope.errorMessage = "You're too far from a cherry tree! I gave you a smattering of trees instead."
+		}
+	
 	}
 
 }]);
