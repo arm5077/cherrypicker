@@ -35,7 +35,7 @@ angular.module("app")
 					}
 					else {
 						setTimeout(function(){
-							window.location.hash="/list";
+							window.location.hash="/map";
 						}, 1000)
 					}	
 					
