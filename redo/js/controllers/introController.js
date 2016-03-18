@@ -4,17 +4,17 @@ angular.module("app")
 	$scope.timeUntilBloom = function(){
 		// Bloom range, from the National Park Service
 		var bloomRange = {
-			start: moment("2016-03-18T00:00:00-0400"), 
-			end: moment("2016-03-23T23:59:59-0400")
+			start: moment("2016-03-23T00:00:00-0400"), 
+			end: moment("2016-03-24T23:59:59-0400")
 		};
 		
 		// It's before peak bloom, return the amount of time left;
 		if( moment().isBefore(bloomRange.start) )
-			return "Peak bloom is <strong>" + Math.floor(moment(bloomRange.start).diff(moment()) / 1000 / 60 / 60 / 24) + " days</strong> away";
+			return "Peak bloom is <strong>" + Math.ceil(moment(bloomRange.start).diff(moment()) / 1000 / 60 / 60 / 24) + " days</strong> away";
 			
 		// If it's in the middle of peak bloom
 		else if( moment().isBetween(bloomRange.start, bloomRange.end) )
-			return "You've got <strong>" + Math.floor(moment(bloomRange.end).diff(moment()) / 1000 / 60 / 60 / 24) + " days</strong> of peak bloom left";
+			return "You've got <strong>" + Math.ceil(moment(bloomRange.end).diff(moment()) / 1000 / 60 / 60 / 24) + " days</strong> of peak bloom left";
 		
 		else return "Peak bloom is over";
 		
