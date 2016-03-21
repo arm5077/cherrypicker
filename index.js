@@ -51,11 +51,17 @@ app.get("/api/nearest/:lng/:lat", function(request, response){
 			ORDER BY distance ASC LIMIT 10 ", 
 		[request.params.lng, request.params.lat], function(err, result){
 			if(err) throw err;
-			client.query("INSERT INTO latlngs (lat, lng, timestamp) VALUES (" + request.params.lat + ", " + request.params.lng + ",'" + moment().format('YYYY-MM-DD HH:mm:ss') + "')", function(err){
+			// This keeps breaking, figure out why, but here's a temporary fix
+			client.query("GRANT ALL PRIVILEGES ON TABLE latlngs TO mprydeiogvbioz", function(err){
 				if(err) throw err;
-				response.status(200).json(result.rows);
-				client.end();
+				client.query("INSERT INTO latlngs (lat, lng, timestamp) VALUES (" + request.params.lat + ", " + request.params.lng + ",'" + moment().format('YYYY-MM-DD HH:mm:ss') + "')", function(err){
+					if(err) throw err;
+					response.status(200).json(result.rows);
+					client.end();
+				});
+				
 			});
+			
 			
 		});
 	});	
