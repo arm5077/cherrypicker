@@ -19,6 +19,8 @@ app.use("/", express.static(__dirname + "/redo/"));
 // Set up static page (assets page)
 app.use("/assets", express.static(__dirname + "/public/assets/"));
 
+// Set up cert challenge page
+app.use("/.well-known/acme-challenge/lW8paj1f_8BlBp5XqDfzypIOpAf8SVvrvU6QgFU37cQ", express.static(__dirname + "/ssl/cert_test"));
 
 
 // Endpoint to deliver information about a tree
