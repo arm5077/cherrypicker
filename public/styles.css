@@ -1,5 +1,67 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700);
 
+@keyframes expanding_circle {
+  0% {
+	top: 50%;
+	left: 50%;
+    width: 0px;
+	height: 0px;
+	opacity: .5;
+  }
+  95% {
+	top: calc(50% - 250px);
+	left: calc(50% - 250px);
+	width: 500px;
+	height: 500px;
+	opacity: 0;
+  }
+  100% {
+	top: 50%;
+	left: 50%;
+    width: 0px;
+	height: 0px;
+	opacity: 0;
+  }
+}
+
+@keyframes smaller_expanding_circle {
+  0% {
+	top: 50%;
+	left: 50%;
+    width: 0px;
+	height: 0px;
+	opacity: .5;
+  }
+  95% {
+	top: calc(50% - 150px);
+	left: calc(50% - 150px);
+	width: 300px;
+	height: 300px;
+	opacity: 0;
+  }
+  100% {
+	top: 50%;
+	left: 50%;
+    width: 0px;
+	height: 0px;
+	opacity: 0;
+  }
+}
+
+@keyframes flip {
+	0% {
+		transform: rotateY(0deg);
+	}
+
+	50% {
+		transform: rotateY(180deg);
+	}
+	
+	100% {
+		transform: rotateY(0deg);
+	}
+}
+
 @font-face {
     font-family: 'CherryTree';
     src: url('/assets/fonts/CherryTree.eot');
@@ -22,200 +84,449 @@
 .icon-noun_17071.svg:before{content:'\0041';}
 
 html, body {
-	width:100%;
-	height:100%;
-	padding:0;
-	margin:0;
+	height: 100%;
 }
 
-body {
-	font-family:Roboto, sans-serif;
-	background-color: #DCC8C8;
-	overflow-x:hidden;
+body{
+	font-family: "Roboto", sans-serif;
+	margin: 0;
+	padding: 0;
+	overflow:hidden;
+	overflow-y: scroll;
 }
 
 a {
-	color: #952226;
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	margin:0;
-	padding:0;
-	margin-bottom:10px;
-	font-weight:200;
+.center-vertical {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
 }
 
-h1.title, h2 {
-	text-transform: lowercase;
-	text-align: center;
-	font-size: 30pt;
-	margin-bottom: 20px;
-}
-
-h3 {
-	padding:0px 50px;
-	text-align:center;
-}
-
-.roundButton {
-	background-color: #EA7F83;
-	width:100%;
+.views {
 	height: 100%;
-	margin:auto;
-	border-radius:50%;
-	position:relative;
-
 }
 
-
-	
-.tree {
-	font-family: CherryTree, sans-serif;
-	color: rgba(255,255,255,.7);
-	font-size:150pt;
-	position:relative;
-}	
-
-	.tree.small {
-		font-size:50pt;
-	}
-
-/*
-tree {
-	color:white;
-	font-size:200pt;
-	width:100%;
-	text-align:center;
-	text-rendering: auto;
-	  -webkit-font-smoothing: antialiased;
-	  -moz-osx-font-smoothing: grayscale;
-	  transform: translate(0, 0);
-	margin:auto;
-	display:block;
-}	
-
-	tree:before {
-		content:"A";
-		font-family: "CherryTree";
-	}
-*/
-
-.section {
-	height:100%;
-	width: 100%;
-	position:absolute;
-	top:0;
-	left: 0;
-	transition: left .25s;
+.page {
+	transition: 1s all;
+	position: relative;
+	height: 100%;
 }
-	.section.onStage {
-		left:0;
-	}
-	
-	.section.slidUp {
-		left: -100%;
-	}
-	
-	.section.slidDown {
+
+	.page.ng-enter {
 		left: 100%;
 	}
-
-	.section#directions {
-		overflow-y:scroll;
+	
+	.page.ng-enter.ng-enter-active {
+		left: 0%;
 	}
+	
+.header {
+	width: 94%;
+	background-color: #EC008C;
+	color: white;
+	padding: 10px 3%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
 
-.nondescript-text {
-	font-weight:300;
-	color: rgba(0,0,0,.4);
-	padding: 0px 20%;
-	text-align:center;
-	font-size:12pt;
+.header .nameplate {
+	margin-left: -3%;
+	width: 100%;
+	position: absolute;
+	z-index: -1;
+	text-align: center;
+	font-weight: 100;
+}
+
+.header .back, .header .info {
+	float: left;
+	font-size: 14pt;
+    margin-top: 0px;
+	z-index: 2;
+}
+
+.header .back {
+	padding-right: 20px;
+}
+
+.header .info {
+	float: right;
+	padding-left: 20px;
+}
+
+.logo {
+	background-image: url("https://s3.amazonaws.com/the-atlantic/assets/logo-gray.svg");
+  	background-size: contain;
+	margin: 0 auto 5px;
 }
 
 
-/* entire container, keeps perspective */
-.flip-container {
-	perspective: 1000;
-	-webkit-perspective: 1000;
-	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-	cursor:pointer;
-}
-	/* flip the pane when hovered */
- 	.flip-container.flip .flipper {
-		transform: rotateY(180deg);
-		-webkit-transform: rotateY(180deg);
-	}
-	
-	/* flip speed goes here */
-	.flipper {
-		transition: 0.6s;
-		transform-style: preserve-3d;
-		-webkit-transform-style: preserve-3d;
-		width:100%;
-		height:100%;
-		position: relative;
-	}
-	
-	.front, .back {
-		-webkit-backface-visibility: hidden;
-		backface-visibility: hidden;
-	}
-	
-	.front {
-		z-index: 2;
-		-webkit-transform: rotateY(0deg);
-		transform: rotateY(0deg);
-	}
-	
-	.back {
-		-webkit-transform: rotateY(180deg);
-		transform: rotateY(180deg);
-	}
+/* Intro section */
 
-h2 {
-	font-size: 50pt;
+.intro {
+	height: 100%;
 }
 
-ol {
-	max-width:500px;
-	width:100%;
-	margin:auto;
-	list-style: none;
-	font-size: 15pt;
+.intro .center-container {
+	text-align: center;
+	margin-top:-20px;
+}
+
+.intro .title {
+	font-family: Roboto, sans-serif;
+	font-size: 30pt;
+	font-weight: 100;
+	text-align: center;
+	display: inline-block;
+	position: relative;
+}
+
+	.intro .title:after {
+		content: " ";
+		position: absolute;
+		left: 0px;
+		bottom: 0px;
+		width: 100%;
+		height: 8px;
+		background-color: #EC008C;
+		z-index: -1;
+	}
+
+.intro .tree-container {
+	position: relative;
+}
+
+.intro .tree {
+	font-family: CherryTree, sans-serif;
+	font-size: 250px;
+	color: #333;
+	text-align: center;
+	z-index: 2;
+	position: relative;
+	left: -10px;
+}
+
+.intro .expanding-circle, .intro .smaller-expanding-circle {
+	background-color: #EC008C;
+	position: absolute;
+	border-radius: 50%;
+	animation: expanding_circle 3s infinite;
+	animation-timing-function:  ease-out;
+	z-index: -1;
+}
+
+	.intro .smaller-expanding-circle {
+		animation: smaller_expanding_circle 3s infinite;
+	}
+	
+.intro .tap-text {
 	text-align: center;
 	margin: auto;
-	padding: 0;
-	font-weight:300;
-  
+	width: 125px;
 }
 
-	ol li {
-		margin-bottom:15px;
-		padding:0;
-	}
+.intro .peak {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 13pt;
+	padding: 10px 0px;
+	font-weight: 400;
+	background-color: #EC008C;
+	color: white;
+}
+
+/* Loading page */
+
+.loading {
 	
-		ol li table {
-			width: 100%;
-		}
-		
-			ol li table td:first-child {
-				min-width:230px;
-				padding:10px;
-			}
-			
-		ol li img {
-			border: 5px solid #EA7F83;
-			border-radius: 10px;
-		}
-		
-#about .text {
-	max-width:500px;
-	margin:10px auto;
-	padding:0px 25px;
-	line-height:1.4em;
+}
+
+.loading ul.taskList {
+	padding: 0;
+	list-style: none;
+}
+
+.loading ul.taskList li {
+
+	padding: 10px 7px;
+	color: white;
+	background-color: #EC008C;
+	transition: all 1s;
+	position: relative;
+	display: block;
+	text-align: center;
+	font-size: 14pt;
+}
+
+.loading ul.taskList li.ng-enter {
+	top: 100px;
+	opacity: 0;
+	max-height:0px;
+}
+
+.loading ul.taskList li.ng-enter.ng-enter-active {
+		top: 1px;
+		opacity: 1;
+		max-height: 200px;
+	}
+
+.loading ul.taskList li a {
+	text-decoration: underline;
+}
+
+.loading .trees {
+	text-align: center;
+}
+
+.loading .treeContainer {
+	perspective: 1000;
+	-webkit-perspective: 1000;
+	margin-right: 15px;
+	display: inline-block;
+}
+
+
+.loading .treeContainer, .loading .front, .loading .back {
+	width: 75px;
+	height: 75px;
+}
+
+	.loading .treeContainer:last-child {
+		margin-right: 0px;
+	}
+
+.loading .tree {
+	transition: 1s;
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	position: relative;
+	animation: 3s flip infinite;
+}
+
+.loading .front, .loading .back {
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-family: 'CherryTree';
+	font-size: 40pt;
+	border-radius: 50%;
+	line-height: 75px;
+}
+
+.loading .front {
+	z-index: 2;
+	transform: rotateY(0deg);
+	-webkit-transform: rotateY(0deg);
+	border: 4px solid #EC008C;
+	color: #EC008C;
+}
+
+.loading .back {
+	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
+	color: white;
+	background-color: #EC008C;
+}
+
+.loading .symbol {
+	text-align: center;
+	position: relative;
+	left: -2px;
+}
+
+/* List section */
+
+
+.list ul.results {
+	list-style: none;
+	padding: 0 0 40px 0;
+	margin: 42px 0 0;
+	overflow: scroll;
+}
+
+.list li {
+	margin: 0px;
+	border-bottom: 1px solid #EC008C;
+	padding: 20px;
+}
+
+	.list li:nth-child(2n - 1){
+		background-color: rgba(236,0,140,.05);
+	}
+
+.list .icon {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	font-family: "CherryTree";
+	line-height: 30px;
+    text-align: center;
+    border: 1px solid #EC008C;
+    display: inline-block;
+	margin-right: 10px;
+    margin-top: -13px;
+    position: relative;
+    top: 6px;
+	float: left;
+}
+
+	.list .icon.white {
+		color: white;
+		background-color: #EC008C;
+	}
+
+	.list .icon.pink {
+		background-color: white;
+		color: #EC008C;
+	}
+
+.list .name {
+	float: left;
+	font-weight: bold;
+}
+
+.list .distance {
+	float: right;
+}
+
+/* Shared map and list section */
+
+
+.list .footer, .map .footer, .tree .footer {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+}
+
+.list .footerItem, .map .footerItem {
+	float: left;
+	text-align: center;
+	width: 50%;
+	padding: 15px 0px;
+	color: #EC008C;
+	font-weight: bold;
+	border-top: 1px solid #EC008C;
+	background-color: white;
+}
+
+.list .footerItem.selected, .map .footerItem.selected {
+	background-color: #EC008C;
+	color: white;
+}
+
+/* Map section */
+.map {
+	
+}
+
+
+
+#mapContainer {
+	width: 100%;
+	height: calc(100% - 50px);
+}
+
+.treeFont {
+	font-family: "CherryTree" !important;
+}
+
+/* Tree section */
+.tree {
+	color: #333;
+}
+
+.tree .content {
+	padding: 30px 3% 0px;
+	margin-top:20px;
+}
+
+.tree .title {
+
+	font-size: 25pt;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.tree .address {
+	color: #999;
+	font-size: 12pt;
+	text-transform: uppercase;
+}
+
+.tree #mapContainer {
+	width: 100%;
+	height: 200px;
+	margin: 10px 0px 20px;
+}
+
+.tree .stats {
+	width: 94%;
+	margin: 20px auto;
+}
+
+.tree td:first-child {
+	font-weight: bold;
+}
+
+.tree .notes, .tree .picture {
+	width: 94%;
+	margin: 10px auto;
+}
+
+.tree .label {
+	font-size: 10pt;
+	color: #999;
+	margin-bottom: 5px;
+}
+
+.tree .notes .text {
+	background-color: rgba(236,0,140, .4);
+	color: #333;
+	padding: 5px
+}
+
+.tree .picture {
+	max-width: 500px;
+	padding-bottom: 50px;
+}
+
+.tree .picture img {
+	width: 100%;
+}
+
+.tree .footer {
+	background-color: #EC008C;
+	color: white;
+	padding: 10px 0px;
+	text-align: center;
+	font-weight: bold;
+}
+
+/* Info page */
+.info {
+	
+}
+
+.info a {
+	text-decoration: underline;
+}
+
+.info .text {
+	padding: 10px 3%;
+	margin-top: 30px;
+	font-size: 14pt;
 }
