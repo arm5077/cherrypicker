@@ -1,0 +1,13 @@
+<div class="map page">
+	
+	<div class="header" ng-if="errorMessage">
+		<div class="nameplate" style="position: static"><strong>{{errorMessage}}</strong></div>
+	</div>
+	
+	<div id="mapContainer"></div>
+	
+	<div class="footer">
+		<a class="footerItem" id="listButton" href="#/list">list</a>
+		<a class="footerItem selected" id="mapButton" href="#/map">map</a>
+	</div>
+</div>
