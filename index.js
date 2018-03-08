@@ -52,7 +52,7 @@ app.get("/api/nearest/:lng/:lat", function(request, response){
   function(err, result){
 		if(err) throw err;
 		// This keeps breaking, figure out why, but here's a temporary fix
-		pool.query("GRANT ALL PRIVILEGES ON TABLE latlngs TO mprydeiogvbioz", function(err){
+		pool.query(`GRANT ALL PRIVILEGES ON TABLE latlngs TO ${process.env.PG_USER}`, function(err){
 			if(err) throw err;
 			pool.query("INSERT INTO latlngs (lat, lng, timestamp) VALUES (" + request.params.lat + ", " + request.params.lng + ",'" + moment().format('YYYY-MM-DD HH:mm:ss') + "')", function(err){
 				if(err) throw err;
