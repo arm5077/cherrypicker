@@ -19,8 +19,9 @@
 	<title>Cherrypicker | Connecting you with the nearest Washington, D.C. cherry tree</title>
   
   <script type="text/javascript">
+    console.log(location.protocol);
     if (location.protocol != 'https') {
-      location.href='https://www.dccherrypicker.com';
+      window.location='https://www.dccherrypicker.com';
     }
   </script>
 
